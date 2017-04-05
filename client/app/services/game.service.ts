@@ -4,6 +4,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
+import {responseInterceptor} from "angular-in-memory-web-api";
 
 @Injectable()
 export class GameService {
@@ -25,6 +26,23 @@ export class GameService {
         headers.append('Content-Type', 'application/json');
 
         return this.http.post('/api', JSON.stringify(newGame), { headers: headers }).map(response => {
+            response.json();
+        });
+    }
+
+    // delete
+    deleteGame(_id) {
+        return this.http.delete('/api/' + _id).map(response => {
+            response.json();
+        });
+    }
+
+    // update
+    updateGame(game) {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.http.put('/api/' + game._id, JSON.stringify(game), { headers: headers }).map(response => {
             response.json();
         });
     }

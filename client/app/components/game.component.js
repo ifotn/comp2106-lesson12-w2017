@@ -36,7 +36,8 @@ var GameComponent = (function () {
             year: this.year
         };
         this.gameService.addGame(newGame).subscribe(function (response) {
-            _this.games.push(newGame);
+            //this.games.push(response.game);
+            _this.getGames();
             _this.clearForm();
         });
     };
@@ -46,6 +47,39 @@ var GameComponent = (function () {
         this.developer = null;
         this.genre = null;
         this.year = null;
+        this._id = null;
+    };
+    // delete
+    GameComponent.prototype.deleteGame = function (_id) {
+        var _this = this;
+        if (confirm('Are you sure???')) {
+            this.gameService.deleteGame(_id).subscribe(function (response) {
+                _this.getGames();
+            });
+        }
+    };
+    // select
+    GameComponent.prototype.selectGame = function (game) {
+        this.title = game.title;
+        this.developer = game.developer;
+        this.genre = game.genre;
+        this.year = game.year;
+        this._id = game._id;
+    };
+    // update
+    GameComponent.prototype.updateGame = function () {
+        var _this = this;
+        var game = {
+            _id: this._id,
+            title: this.title,
+            developer: this.developer,
+            genre: this.genre,
+            year: this.year
+        };
+        this.gameService.updateGame(game).subscribe(function (response) {
+            _this.getGames();
+            _this.clearForm();
+        });
     };
     return GameComponent;
 }());

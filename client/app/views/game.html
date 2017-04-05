@@ -18,7 +18,10 @@
         <label for="year" class="col-sm-1">Year: *</label>
         <input name="year" id="year" required type="number" min="1977" [(ngModel)]="year" />
     </fieldset>
-    <button class="btn btn-primary col-sm-offset-1" (click)="addGame()">Add</button>
+    <button class="btn btn-primary col-sm-offset-1" (click)="addGame()" *ngIf="!_id">Add</button>
+    <button class="btn btn-primary col-sm-offset-1" (click)="updateGame()" *ngIf="_id">Update</button>
+    <button class="btn btn-primary" (click)="clearForm()">Reset</button>
+    <input name="_id" id="_id" [(ngModel)]="_id" type="hidden" />
 </section>
 
 <h2>Games List</h2>
@@ -37,8 +40,8 @@
         <td>{{game.genre}}</td>
         <td>{{game.year}}</td>
         <td>
-            <button class="btn btn-primary">Edit</button>
-            <button class="btn btn-danger">Delete</button>
+            <button class="btn btn-primary" (click)="selectGame(game)">Edit</button>
+            <button class="btn btn-danger" (click)="deleteGame(game._id)">Delete</button>
         </td>
     </tr>
 </table>

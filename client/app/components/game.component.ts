@@ -39,7 +39,8 @@ export class GameComponent {
         };
 
         this.gameService.addGame(newGame).subscribe(response => {
-            this.games.push(newGame);
+            //this.games.push(response.game);
+            this.getGames();
             this.clearForm();
         })
     }
@@ -50,5 +51,40 @@ export class GameComponent {
         this.developer = null;
         this.genre = null;
         this.year = null;
+        this._id = null;
+    }
+
+    // delete
+    deleteGame(_id) {
+        if (confirm('Are you sure???')) {
+            this.gameService.deleteGame(_id).subscribe(response => {
+                this.getGames();
+            })
+        }
+    }
+
+    // select
+    selectGame(game) {
+        this.title = game.title;
+        this.developer = game.developer;
+        this.genre = game.genre;
+        this.year = game.year;
+        this._id = game._id;
+    }
+
+    // update
+    updateGame() {
+        let game = {
+            _id: this._id,
+            title: this.title,
+            developer: this.developer,
+            genre: this.genre,
+            year: this.year
+        };
+
+        this.gameService.updateGame(game).subscribe(response => {
+            this.getGames();
+            this.clearForm();
+        });
     }
 }

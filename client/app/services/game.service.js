@@ -33,6 +33,20 @@ var GameService = (function () {
             response.json();
         });
     };
+    // delete
+    GameService.prototype.deleteGame = function (_id) {
+        return this.http.delete('/api/' + _id).map(function (response) {
+            response.json();
+        });
+    };
+    // update
+    GameService.prototype.updateGame = function (game) {
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.put('/api/' + game._id, JSON.stringify(game), { headers: headers }).map(function (response) {
+            response.json();
+        });
+    };
     return GameService;
 }());
 GameService = __decorate([
