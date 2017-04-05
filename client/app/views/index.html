@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>COMP2106 Game Library</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/app/public/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/app/public/stylesheets/bootstrap-theme.min.css">
+    <!-- 1. Load libraries -->
+    <!-- Polyfill(s) for older browsers -->
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <!-- 2. Configure SystemJS -->
+    <script src="systemjs.config.js"></script>
+    <script>
+        System.import('app').catch(function(err) {
+            console.error(err);
+        });
+    </script>
+
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <ul class="nav navbar-nav">
+        <li><a class="navbar-brand" href="/">COMP2106 Game Library</a></li>
+    </ul>
+</nav>
+<main>
+    <game>Loading...</game>
+</main>
+<footer class="navbar-fixed-bottom">
+    <hr />
+    &copy; 2017 | COMP2106 Advanced Server Side Scripting
+</footer>
+
+<!-- js -->
+<script src="/app/public/javascripts/jquery-3.2.1.min.js"></script>
+<script src="/app/public/javascripts/bootstrap.js"></script>
+<script src="/app/public/javascripts/clientScripts.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<h1 class="text-center">MEAN SPA Game Library</h1>
+
+<section>
+    <h2>Game Details</h2>
+    <fieldset class="form-group">
+        <label for="title" class="col-sm-1">Title: *</label>
+        <input name="title" id="title" required [(ngModel)]="title" />
+    </fieldset>
+    <fieldset class="form-group">
+        <label for="developer" class="col-sm-1">Developer: *</label>
+        <input name="developer" id="developer" required [(ngModel)]="developer" />
+    </fieldset>
+    <fieldset class="form-group">
+        <label for="genre" class="col-sm-1">Genre: *</label>
+        <input name="genre" id="genre" required [(ngModel)]="genre" />
+    </fieldset>
+    <fieldset class="form-group">
+        <label for="year" class="col-sm-1">Year: *</label>
+        <input name="year" id="year" required type="number" min="1977" [(ngModel)]="year" />
+    </fieldset>
+    <button class="btn btn-primary col-sm-offset-1" (click)="addGame()">Add</button>
+</section>
+
+<h2>Games List</h2>
+
+<table class="table table-striped table-hover">
+    <tr>
+        <td>Title</td>
+        <td>Developer</td>
+        <td>Genre</td>
+        <td>Year</td>
+        <td>Actions</td>
+    </tr>
+    <tr *ngFor="let game of games">
+        <td>{{game.title}}</td>
+        <td>{{game.developer}}</td>
+        <td>{{game.genre}}</td>
+        <td>{{game.year}}</td>
+        <td>
+            <button class="btn btn-primary">Edit</button>
+            <button class="btn btn-danger">Delete</button>
+        </td>
+    </tr>
+</table>
